@@ -8,6 +8,7 @@
 #define WHITE "\033[37m"
 #define GRAY "\033[90m"
 #define BLACK "\033[30m"
+#define CYAN "\033[36m"
 #define WHITE_BG "\033[47m"
 int get_day_of_week(int year, int month, int day)
 {
@@ -31,7 +32,7 @@ bool leapday_chk(int year)
     else
         return false;
 }
-int draw_cal(int yr, int mon, int cal[6][7])
+int draw_cal(int yr, int mon, int dy, int status, int cal[6][7])
 {
     char *days[] = {
         "S",
@@ -122,6 +123,10 @@ int draw_cal(int yr, int mon, int cal[6][7])
             if ((i == 0 && cal[i][j] > 7) || (i >= 4 && cal[i][j] < 13))
             {
                 printf(GRAY "%6d " RESET, cal[i][j]);
+            }
+            else if ((cal[i][j] == dy) && (status))
+            {
+                printf(CYAN "%6d " RESET, cal[i][j]);
             }
             else
             {

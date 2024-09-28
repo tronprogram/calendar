@@ -11,21 +11,33 @@ int main()
 {
 
     int i, j;
-    bool leapday;
+
     bool exit = false;
+    bool monthstatus = true;
     int cal[6][7] = {0};
     char inputs;
 
     time_t now = time(NULL);
     struct tm *local = localtime(&now);
     int year = local->tm_year + 1900;
+    int actualyear = year;
     int month = local->tm_mon + 1;
+    int actualmonth = month;
     int day = local->tm_mday;
-    leapday = leapday_chk(year);
+
     do
     {
+        if (month == actualmonth && (year == actualyear))
+        {
+            monthstatus = true;
+        }
+        else
+        {
+            monthstatus = false;
+        }
+
         cleanScreen();
-        draw_cal(year, month, cal);
+        draw_cal(year, month, day, monthstatus, cal);
         inputs = _getch();
         if (inputs == -32)
         {
@@ -61,10 +73,9 @@ int main()
         {
             exit = true;
         }
-        
 
     } while (exit == false);
-    draw_cal(year, month, cal);
+    draw_cal(year, month, day, monthstatus, cal);
     // TODO: Implement a tasks system
 }
 // Function to clear screen depending on OS

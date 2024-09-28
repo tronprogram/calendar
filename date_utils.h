@@ -6,5 +6,5 @@ const int get_day_of_week(int year, int month, int day);
 // Checks if the current year is a leap year.
 const bool leapday_chk(int year);
 // Draws the calendar.
-const int draw_cal(int yr, int mon, int cal[6][7]);
+const int draw_cal(int yr, int mon, int dy, int status, int cal[6][7]);
 #endif // DATE_UTILS_H
